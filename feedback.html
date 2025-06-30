@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <style type="text/css">
+    .signup-op a {
+      text-decoration: none;
+      border: 2px solid #000;
+      background-color: rgba(68, 241, 154, 1);
+      padding: 8px 20px;
+      color: black;
+      transition: 0.8s ease;
+    }
+    .signup-op a:hover {
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>   
+    <div class="main">
+      <ul>
+                <ul class="list2">
+          <li><a href="mainPage.html">Home</a></li>
+          <li><a id="long" href="Game.html">Game</a></li>
+          <li><a href="AboutUs.html">AboutUs</a></li>
+          <liclass="active-menu"><a href="feedback.html">Feedback</a></li>
+          
+        </ul>
+      </ul>
+    </div>
+  </header>
+  <br>
+
+        <style>
+        /* Global reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))no-repeat center center fixed;
+ background-image: url('bgimages/bg31.jpg'); 
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 600px; /* Adjusted max-width for a smaller layout */
+            width: 100%;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            animation: slide-in 0.5s ease;
+        }
+
+        header {
+            background-color: #007bff;
+            padding: 15px 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        form {
+            padding: 20px 0;
+        }
+
+        label, textarea, input[type="submit"], .rating {
+            display: block;
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 40px; /* Reduced height for feedback textarea */
+            resize: none;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 20px;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .rating input:checked ~ label,
+        .rating label:hover ~ label {
+            color: #ffc107; /* Selected and hover color */
+        }
+
+        input[type="submit"] {
+            background: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #007bff;
+        }
+
+        .success-message {
+            background: #28a745;
+            color: #fff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            text-align: center;
+            animation: fade-in 0.5s ease;
+        }
+
+        .feedback-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        .feedback-table th, .feedback-table td {
+            padding: 10px 20px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .feedback-table th {
+            background-color: #007bff;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        @keyframes slide-in {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Feedback Form</h1>
+        </header>
+
+        <form id="feedbackForm" action="submit_feedback.php" method="post">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="rating">Rating:</label>
+            <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+            </div>
+            
+            <label for="feedback">Your Feedback:</label>
+            <textarea id="feedback" name="feedback" required></textarea>
+            
+            <input type="submit" value="Submit Feedback">
+        </form>
+
+        <div id="successMessage" class="success-message" style="display: none;">
+            Thank you for your feedback! We appreciate your input.
+        </div>
+
+        <table class="feedback-table" id="feedbackTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Rating</th>
+                    <th>Feedback</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Fetch form values
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var rating = document.querySelector('input[name="rating"]:checked').value;
+            var feedback = document.getElementById('feedback').value;
+
+            // Display success message
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Add new row to the table
+            var table = document.getElementById('feedbackTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.rows.length);
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            cell1.innerHTML = name;
+            cell2.innerHTML = rating;
+            cell3.innerHTML = feedback;
+
+            // You can optionally reset the form after successful submission
+            document.getElementById('feedbackForm').reset();
+        });
+    </script>
+</body>
+</html>
+

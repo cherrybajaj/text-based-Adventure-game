@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thriller Adventure Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Thriller Adventure Game</h1>
+        <img id="scene-image" src="images/scene1.jpg" alt="Scene Image">
+        <p id="scene-description">Welcome to the Adventure Game! As an avid traveller, you have decided to visit the Catacombs of Paris. However, during your exploration, you find yourself lost. You can choose to walk in multiple directions to find a way out. You are at a crossroads, and you can choose to go down any of the four hallways. Where would you like to go?</p>
+        <ul id="options">
+            <li><button onclick="goToScene('shadowFigure')">Go left</button></li>
+            <li><button onclick="goToScene('skeletons')">Go right</button></li>
+            <li><button onclick="goToScene('hauntedRoom')">Go forward</button></li>
+            <li><button onclick="goToScene('wall')">Go backward</button></li>
+        </ul>
+    </div>
+
+    <script>
+        let weapon = false;
+
+        const scenes = {
+            'start': {
+                'description': 'Welcome to the Adventure Game! As an avid traveller, you have decided to visit the Catacombs of Paris. However, during your exploration, you find yourself lost. You can choose to walk in multiple directions to find a way out. You are at a crossroads, and you can choose to go down any of the four hallways. Where would you like to go?',
+                'image': 'images/scene1.jpg',
+                'options': {
+                    'shadowFigure': 'Go left',
+                    'skeletons': 'Go right',
+                    'hauntedRoom': 'Go forward',
+                    'wall': 'Go backward'
+                }
+            },
+            'skeletons': {
+                'description': 'You see a wall of skeletons as you walk into the room. Someone is watching you. Where would you like to go?',
+                'image': 'images/scene2.jpg',
+                'options': {
+                    'knife': 'Go left',
+                    'intro': 'Go backward',
+                    'strangeCreature': 'Go forward'
+                }
+            },
+            'hauntedRoom': {
+                'description': 'You hear strange voices. You think you have awoken some of the dead. Where would you like to go?',
+                'image': 'images/scene3.jpg',
+                'options': {
+                    'multipleGhouls': 'Go right',
+                    'exitLeft': 'Go left',
+                    'intro': 'Go backward'
+                }
+            },
+            'shadowFigure': {
+                'description': 'You see a dark shadowy figure appear in the distance. You are creeped out. Where would you like to go?',
+                'image': 'images/scene4.jpg',
+                'options': {
+                    'cameraScene': 'Go right',
+                    'wall': 'Go left',
+                    'intro': 'Go backward'
+                }
+            },
+            'cameraScene': {
+                'description': 'You see a camera that has been dropped on the ground. Someone has been here recently. Where would you like to go?',
+                'image': 'images/scene5.jpg',
+                'options': {
+                    'exitCamera': 'Go forward',
+                    'shadowFigure': 'Go backward'
+                }
+            },
+            'strangeCreature': {
+                'description': 'A strange ghoul-like creature has appeared. You can either run or fight it. What would you like to do?',
+                'image': 'images/scene6.jpg',
+                'options': {
+                    'fight': 'Fight the creature',
+                    'flee': 'Run away'
+                }
+            },
+            'knife': {
+                'description': 'You find that this door opens into a wall. You open some of the drywall to discover a knife.',
+                'image': 'images/scene7.jpg',
+                'options': {
+                    'weapon': true,
+                    'intro': 'Go backward',
+                    'strangeCreature': 'Go forward'
+                }
+            },
+            'fight': {
+                'description': () => {
+                    if (weapon) {
+                        return 'You kill the ghoul with the knife you found earlier. After moving forward, you find one of the exits. Congrats!';
+                    } else {
+                        return 'The ghoul-like creature has killed you.';
+                    }
+                },
+                'image': () => {
+                    if (weapon) {
+                        return 'images/scene8.jpg';
+                    } else {
+                        return 'images/scene9.jpg';
+                    }
+                },
+                'options': {
+                    'start': 'Restart the adventure'
+                }
+            },
+            'flee': {
+                'description': 'You flee back to the skeleton room. Where would you like to go?',
+                'image': 'images/scene2.jpg',
+                'options': {
+                    'intro': 'Go backward',
+                    'strangeCreature': 'Go forward'
+                }
+            },
+            'exitLeft': {
+                'description': 'You made it! You\'ve found an exit.',
+                'image': 'images/scene9.jpg',
+                'options': {
+                    'start': 'Restart the adventure'
+                }
+            },
+            'multipleGhouls': {
+                'description': 'Multiple ghoul-like creatures start emerging as you enter the room. You are killed.',
+                'image': 'images/scene3.jpg',
+                'options': {
+                    'start': 'Restart the adventure'
+                }
+            },
+            'exitCamera': {
+                'description': 'You made it! You\'ve found an exit.',
+                'image': 'images/scene10.jpg',
+                'options': {
+                    'start': 'Restart the adventure'
+                }
+            },
+            'wall': {
+                'description': 'You find that this door opens into a wall.',
+                'image': 'images/scene7.jpg',
+                'options': {
+                    'intro': 'Go back to the start'
+                }
+            },
+            'intro': {
+                'description': 'You are at a crossroads, and you can choose to go down any of the four hallways. Where would you like to go?',
+                'image': 'images/scene0.jpg',
+                'options': {
+                    'shadowFigure': 'Go left',
+                    'skeletons': 'Go right',
+                    'hauntedRoom': 'Go forward',
+                    'wall': 'Go backward'
+                }
+            }
+        };
+
+        function goToScene(sceneKey) {
+            const scene = scenes[sceneKey];
+            document.getElementById('scene-image').src = typeof scene.image === 'function' ? scene.image() : scene.image;
+            document.getElementById('scene-description').textContent = typeof scene.description === 'function' ? scene.description() : scene.description;
+
+            const optionsElement = document.getElementById('options');
+            optionsElement.innerHTML = '';
+            for (const [key, value] of Object.entries(scene.options)) {
+                const li = document.createElement('li');
+                const button = document.createElement('button');
+                button.textContent = value;
+                button.onclick = () => goToScene(key);
+                li.appendChild(button);
+                optionsElement.appendChild(li);
+            }
+
+            if (scene.options.weapon) {
+                weapon = scene.options.weapon;
+            }
+        }
+
+        window.onload = () => {
+            goToScene('start');
+        };
+    </script>
+</body>
+</html>

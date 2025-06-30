@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <style>
+        /* Global reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-image: url('bgimages/bg35.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+
+        .heading {
+            text-align: center;
+            color: white;
+            font-size: 70px;
+            margin-top: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+        }
+        
+        .subtitle {
+        text-align: center;
+        color: white;
+        font-size: 24px;
+        margin-top: 20px;
+        font-style: italic;
+    }
+
+        .heading {
+        text-align: center;
+        font-size: 70px;
+        margin-top: 50px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .algerian-style {
+        font-family: Algerian, serif; 
+        color: white; 
+    }
+        .main {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 8vh;
+            background-color: rgba(0, 0, 128, 0.4);
+            max-width: 1550px;
+            z-index: 1000;         }
+
+        .list2 {
+            float: right;
+            margin-top: 20px;
+            margin-right: 50px;
+        }
+
+        .list2 li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        .list2 li a {
+            text-decoration: none;
+            color: white;
+            padding: 5px 20px;
+            border: 1px solid transparent;
+            transition: 0.9s ease;
+        }
+
+        .list2 li a:hover,
+        .list2 li.active-menu a {
+            background-color: #fff;
+            color: #000080;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin: 150px auto 0; 
+            max-width: 1500px;
+        }
+
+        .box {
+            overflow: hidden;
+            height: 270px;
+            box-sizing: border-box;
+            transition: transform 0.5s;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .imgBox {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .imgBox img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .name-text {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #333;
+            font-family: Helvetica;
+            text-align: center;
+            transition: 0.6s ease;
+            width: 100%; 
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 0;
+            opacity: 0;
+        }
+
+        .name-text h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .name-text a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .box:hover .imgBox img {
+            transform: scale(1.1);
+        }
+
+        .box:hover .name-text {
+            opacity: 1;
+        }
+
+        @keyframes moveBackground {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 50% 50%;
+            }
+        }
+
+        @keyframes floatBox {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: floatBox 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading algerian-style">TALE TRAIL</h1>
+    <p class="subtitle">.....Adventure awaits you........</p>
+    <div class="main">
+        <ul class="list2">
+            <li><a href="mainPage.html">Home</a></li>
+            <li class="active-menu"><a id="long" href="Game.html">Game</a></li>
+            <li><a href="AboutUs.html">AboutUs</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            
+        </ul>
+    </div>
+    <div class="container">
+        <div class="box floating">
+            <div class="imgBox">
+                <img src="images/gallery/red3.JPG" alt="red3 Image">
+            </div>
+            <div class="name-text">
+                <a href="D:\FINAL\MysteryGame-staging\index.html" class="btn">PLAY</a>
+            </div>
+           <p>red pill</p>
+        </div>
+        <div class="box floating">
+            <div class="imgBox">
+                <img src="images/gallery/blue2.jpg" alt="blue2 Image">
+            </div>
+            <div class="name-text">
+                <a href="D:\FINAL\Adventure-Game-JS-main\index.html" class="btn">PLAY</a>
+            </div>
+        </div>
+        <div class="box floating">
+            <div class="imgBox">
+                <img src="images/gallery/green.JPG" alt="green Image">
+            </div>
+            <div class="name-text">
+                
+                <a href="D:\FINAL\Interals\game.html" class="btn">PLAY</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Adding parallax effect to background
+        document.body.style.animation = 'moveBackground 50s linear infinite';
+    </script>
+</body>
+</html>
